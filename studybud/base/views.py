@@ -39,7 +39,6 @@ def logoutUser(request):
 
 def registerPage(request):
     form = UserCreationForm()
-    context = {'form': form}
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -50,6 +49,7 @@ def registerPage(request):
             return redirect('home')
         else:
             messages.error(request, 'An error occured during registration')
+    context = {'form': form}
     return render(request, 'base/login_register.html', context)
 
 
